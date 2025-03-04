@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app: kubernetes-bootcamp
+  name: kubernetes-bootcamp
+spec:
+  replicas: 10
+  selector:
+    matchLabels:
+      app: kubernetes-bootcamp
+  template:
+    metadata:
+      labels:
+        app: kubernetes-bootcamp
+    spec:
+      containers:
+        - image: nginx
+          name: satu
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1      # Specifies the maximum number of Pods that can be created over the desired number of Pods during the update.
+      maxUnavailable: 1    # Specifies the maximum number of Pods that can be unavailable during the update.
